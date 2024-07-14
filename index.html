@@ -1,0 +1,181 @@
+<html><head><base href="https://parkingspotter.app">
+<title>החניה שלנו - מפת חניה אינטראקטיבית</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+  .container {
+    position: relative;
+    width: 110%;
+    max-width: 880px;
+    transform: scale(1.1);
+    transform-origin: center;
+  }
+  .parking-lot {
+    display: flex;
+    gap: 110px;
+    justify-content: center;
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    position: relative;
+  }
+  .middle-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .spot {
+    width: 132px;
+    height: 88px;
+    background-color: #e6f3ff;
+    border: 1px solid #999;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .spot:hover {
+    background-color: #d9ebff;
+  }
+  .spot.occupied {
+    background-color: #ff69b4;
+  }
+  .angled-spot {
+    width: 132px;
+    height: 88px;
+    background-color: #e6f3ff;
+    border: 1px solid #999;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transform: rotate(45deg);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .angled-spot:hover {
+    background-color: #d9ebff;
+  }
+  .angled-spot.occupied {
+    background-color: #ff69b4;
+  }
+  .car-icon {
+    width: 66px;
+    height: 66px;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    filter: brightness(0) saturate(100%) invert(53%) sepia(78%) saturate(491%) hue-rotate(136deg) brightness(101%) contrast(101%);
+  }
+  .occupied .car-icon {
+    opacity: 1;
+  }
+  .angled-spot .car-icon {
+    transform: rotate(-45deg);
+  }
+  h1 {
+    text-align: center;
+    color: #8a2be2;
+    font-size: 39.6px;
+    font-weight: bold;
+    text-shadow: 2.2px 2.2px 4.4px rgba(0,0,0,0.1);
+    margin: 0 0 22px 0;
+  }
+  .info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+  }
+  .info-text {
+    text-align: right;
+    direction: rtl;
+    font-weight: bold;
+    margin-right: 11px;
+  }
+  .info {
+    color: purple;
+    font-size: 19.8px;
+    margin-bottom: 2px;
+  }
+  .sub-info {
+    color: #8a2be2;
+    font-size: 17.6px;
+  }
+  .made-by {
+    position: absolute;
+    top: -27.5px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 15.4px;
+    color: #ff69b4;
+    font-style: italic;
+  }
+  .lightbulb-icon {
+    width: 44px;
+    height: 44px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>החניה שלנו</h1>
+  <div class="parking-lot">
+    <div class="column">
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+    </div>
+    <div class="middle-column">
+      <div class="angled-spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="angled-spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="angled-spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="angled-spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="angled-spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+    </div>
+    <div class="column">
+      <div class="made-by">Made by IrisPelled</div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+      <div class="spot" onclick="toggleSpot(this)"><img class="car-icon" src="https://cdn-icons-png.flaticon.com/512/3774/3774278.png" alt="Turquoise toy car icon, flat design" width="66" height="66"></div>
+    </div>
+  </div>
+  <div class="info-container">
+    <div class="info-text">
+      <p class="info">הקלק על מקום חניה כדי לסמנו כתפוס</p>
+      <p class="sub-info">בצאתך אל תשכח להקליק שוב כדי לפנותו</p>
+    </div>
+    <img class="lightbulb-icon" src="https://cdn-icons-png.flaticon.com/512/702/702814.png" alt="Yellow light bulb icon" width="44" height="44">
+  </div>
+</div>
+
+<script>
+function toggleSpot(spot) {
+  spot.classList.toggle('occupied');
+}
+</script>
+</body></html>
